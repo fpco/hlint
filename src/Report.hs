@@ -1,6 +1,6 @@
 {-# LANGUAGE RecordWildCards #-}
 
-module Report(writeReport) where
+module Report({-writeReport-}) where
 
 import Idea
 import Control.Arrow
@@ -10,8 +10,8 @@ import Data.Version
 import System.FilePath
 import HSE.All
 import Paths_hlint
-import Language.Haskell.HsColour.CSS
 
+{-
 
 writeTemplate :: FilePath -> [(String,[String])] -> FilePath -> IO ()
 writeTemplate dataDir content to = do
@@ -71,3 +71,5 @@ escapeHTML = concatMap f
         f '<' = "&lt;"
         f '&' = "&amp;"
         f x = [x]
+
+-}

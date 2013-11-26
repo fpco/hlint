@@ -43,7 +43,6 @@ library
     build-depends:
         base == 4.*, process, filepath, directory, containers,
         transformers >= 0.0,
-        hscolour >= 1.17,
         cpphs >= 1.18.1,
         cmdargs >= 0.10,
         haskell-src-exts >= 1.14 && < 1.16,
@@ -104,4 +103,3 @@ executable hlint
     ghc-options:        -fno-warn-overlapping-patterns
     if flag(threaded)
         ghc-options:    -threaded
-

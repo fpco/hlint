@@ -132,14 +132,16 @@ runHints cmd@CmdMain{..} flags = do
         then putStrLn . showIdeasJson $ showideas
         else do
             usecolour <- cmdUseColour cmd
-            showItem <- if usecolour then showANSI else return show
+            showItem <- return show -- if usecolour then showANSI else return show
             mapM_ (outStrLn . showItem) showideas
+            {-
             if null showideas then
                 when (cmdReports /= []) $ outStrLn "Skipping writing reports"
              else
                 forM_ cmdReports $ \x -> do
                     outStrLn $ "Writing report to " ++ x ++ " ..."
                     writeReport cmdDataDir x showideas
+            -}
             unless cmdNoSummary $
                 outStrLn $
                     (let i = length showideas in if i == 0 then "No suggestions" else show i ++ " suggestion" ++ ['s'|i/=1]) ++
