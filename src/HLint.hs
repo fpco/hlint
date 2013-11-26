@@ -85,15 +85,17 @@ runHints cmd@Cmd{..} flags = do
         then applyHintFiles flags settings files
         else fmap concat $ parallel [listM' =<< applyHintFile flags settings x | x <- files]
     let (showideas,hideideas) = partition (\i -> cmdShowAll || severity i /= Ignore) ideas
-    showItem <- if cmdColor then showANSI else return show
+    showItem <- return show -- if cmdColor then showANSI else return show
     mapM_ (outStrLn . showItem) showideas
 
+    {-
     if null showideas then
         when (cmdReports /= []) $ outStrLn "Skipping writing reports"
      else
         forM_ cmdReports $ \x -> do
             outStrLn $ "Writing report to " ++ x ++ " ..."
             writeReport cmdDataDir x showideas
+    -}
     outStrLn $
         (let i = length showideas in if i == 0 then "No suggestions" else show i ++ " suggestion" ++ ['s'|i/=1]) ++
         (let i = length hideideas in if i == 0 then "" else " (" ++ show i ++ " ignored)")

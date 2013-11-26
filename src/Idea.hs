@@ -4,8 +4,6 @@ module Idea(module Idea, Note(..), showNotes, Severity(..)) where
 
 import HSE.All
 import Settings
-import Language.Haskell.HsColour.TTY
-import Language.Haskell.HsColour.Colourise
 import Util
 
 
@@ -20,12 +18,6 @@ isParseError ParseError{} = True; isParseError _ = False
 
 instance Show Idea where
     show = showEx id
-
-
-showANSI :: IO (Idea -> String)
-showANSI = do
-    prefs <- readColourPrefs
-    return $ showEx (hscolour prefs)
 
 showEx :: (String -> String) -> Idea -> String
 showEx tt Idea{..} = unlines $
